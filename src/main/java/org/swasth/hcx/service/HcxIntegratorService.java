@@ -31,9 +31,12 @@ public class HcxIntegratorService {
          */
         HCXIntegrator hcxIntegrator = null;
         if(!configCache.containsKey(participantCode)) {
-            hcxIntegrator = HCXIntegrator.getInstance(getParticipantConfig(participantCode));
+            Map<String,Object> config = getParticipantConfig(participantCode);
+            System.out.println("The config -------" + config);
+            hcxIntegrator = HCXIntegrator.getInstance(config);
             configCache.put(hcxIntegrator.getParticipantCode(), hcxIntegrator);
         } else {
+            System.out.println("the config cache -----" + configCache);
             hcxIntegrator = (HCXIntegrator) configCache.get(participantCode);
         }
         System.out.println("We are intiliazing the integrator SDK: " + hcxIntegrator.getParticipantCode() + " :: config map: " + hcxIntegrator.getConfig().toString());
