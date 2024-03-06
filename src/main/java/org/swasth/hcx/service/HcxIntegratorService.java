@@ -32,14 +32,12 @@ public class HcxIntegratorService {
         HCXIntegrator hcxIntegrator = null;
         if(!configCache.containsKey(participantCode)) {
             Map<String,Object> config = getParticipantConfig(participantCode);
-            System.out.println("The config -------" + config);
             hcxIntegrator = HCXIntegrator.getInstance(config);
             configCache.put(hcxIntegrator.getParticipantCode(), hcxIntegrator);
         } else {
-            System.out.println("the config cache -----" + configCache);
             hcxIntegrator = (HCXIntegrator) configCache.get(participantCode);
         }
-        System.out.println("We are intiliazing the integrator SDK: " + hcxIntegrator.getParticipantCode() + " :: config map: " + hcxIntegrator.getConfig().toString());
+        System.out.println("We are initializing the integrator SDK: " + hcxIntegrator.getParticipantCode() + " :: config map: " + hcxIntegrator.getConfig().toString());
         return hcxIntegrator;
     }
 
@@ -55,7 +53,6 @@ public class HcxIntegratorService {
     }
 
     public Map<String,Object> getConfig(String code, String username, String password, String privateKey) throws IOException {
-
         Map<String, Object> configMap = new HashMap<>();
         configMap.put("protocolBasePath", env.getProperty("hcx_application.url") + "/api/" + env.getProperty("hcx_application.api_version"));
         configMap.put("participantCode", code);

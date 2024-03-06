@@ -1,6 +1,5 @@
 package org.swasth.hcx.service;
 
-import org.swasth.hcx.exception.ClientException;
 import org.swasth.hcx.exception.ErrorCodes;
 import org.swasth.hcx.exception.ServerException;
 import org.swasth.hcx.utils.JSONUtils;
@@ -39,18 +38,15 @@ public class RedisService {
     }
 
     public List<Map<String, Object>> get(String key) throws Exception {
-        System.out.println("------key-----" + key);
         List<Map<String, Object>> notificationList = new ArrayList<>();
         try (Jedis jedis = getConnection()) {
             Set<String> matchingKeys = jedis.keys("*" + key + "*");
-            System.out.println("matching keys ------" + matchingKeys);
             if (matchingKeys.isEmpty()) {
-                System.out.println("Matching key are empty --------");
                 return notificationList;
             }
-            List<String> sortedKeys = new ArrayList<>(matchingKeys);
-            sortedKeys.sort((k1, k2) -> (int) (jedis.ttl(k2) - jedis.ttl(k1)));
-            List<String> matchingValues = jedis.mget(sortedKeys.toArray(new String[0]));
+//          List<String> sortedKeys = new ArrayList<>(matchingKeys);
+//          sortedKeys.sort((k1, k2) -> (int) (jedis.ttl(k2) - jedis.ttl(k1)));
+            List<String> matchingValues = jedis.mget(matchingKeys.toArray(new String[0]));
             for (String keys : matchingValues) {
                 notificationList.add(JSONUtils.deserialize(keys, Map.class));
             }

@@ -1,8 +1,5 @@
 package org.swasth.hcx.service;
 
-import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.parser.IParser;
-import org.hl7.fhir.r4.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -37,8 +34,6 @@ public class BeneficiaryService {
     private CloudStorageClient cloudStorageClient;
     @Autowired
     private SMSService smsService;
-
-    private final IParser parser = FhirContext.forR4().newJsonParser().setPrettyPrint(true);
     long lastOTPSendTime = 0;
     int otpSentThisMinute = 0;
 
@@ -129,7 +124,7 @@ public class BeneficiaryService {
     }
 
 
-    public ResponseEntity<Object> getRequestListFromDatabase(Map<String, Object> requestBody) throws Exception {
+    public ResponseEntity<Object> getRequestListFromDatabase(Map<String, Object> requestBody) {
         String mobile = (String) requestBody.getOrDefault("mobile", "");
         String app = (String) requestBody.getOrDefault("app", "");
         Map<String, Object> resp = new HashMap<>();
