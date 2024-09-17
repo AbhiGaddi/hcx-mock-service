@@ -11,6 +11,15 @@ public class Constants {
     public static final String COVERAGE_ELIGIBILITY_CHECK = VERSION_PREFIX + "/coverageeligibility/check";
     public static final String COVERAGE_ELIGIBILITY_ONCHECK = VERSION_PREFIX + "/coverageeligibility/on_check";
 
+    public static final String CREATE_COVERAGEELIGIBILITY_REQUEST =  "/create/coverageeligibility/check";
+    public static final String CREATE_CLAIM_SUBMIT = "/create/claim/submit";
+    public static final String CREATE_PRE_AUTH_SUBMIT = "/create/preauth/submit";
+    public static final String CREATE_COMMUNICATION_REQUEST = "/create/communication/request";
+    public static final String CREATE_COMMUNICATION_ON_REQUEST = "create/communication/on_request";
+    public static final String BSP_REQUEST_LIST = "/bsp/request/list";
+    public static final String SEND_OTP = "/send/otp";
+    public static final String VERIFY_OTP = "verify/otp";
+    public static final String UPLOAD_DOCUMENTS  = "/upload/documents";
     // Claims APIs
     public static final String PRE_AUTH_SUBMIT = VERSION_PREFIX + "/preauth/submit";
     public static final String PRE_AUTH_ONSUBMIT = VERSION_PREFIX + "/preauth/on_submit";
@@ -30,7 +39,7 @@ public class Constants {
     public static final String HCX_ON_SEARCH = VERSION_PREFIX + "/hcx/on_search";
 
     //Communication APIs
-    public static final String COMMUNICATION_REQUEST = VERSION_PREFIX + "/communication/request";
+    public static final String COMMUNICATION_REQUEST = "/communication/request";
     public static final String COMMUNICATION_ONREQUEST = VERSION_PREFIX + "/communication/on_request";
 
     //Predetermination APIs

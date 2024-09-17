@@ -67,6 +67,7 @@ public class HcxIntegratorService {
         configMap.put("password", password);
         configMap.put("encryptionPrivateKey", privateKey);
         configMap.put("fhirValidationEnabled", false);
+        configMap.put("signingPrivateKey", privateKey);
 
         return configMap;
     }

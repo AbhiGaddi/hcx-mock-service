@@ -1,10 +1,8 @@
 package org.swasth.hcx.exception;
 
-import org.swasth.hcx.exception.ErrorCodes;
-
 public class ClientException extends Exception {
 
-    private org.swasth.hcx.exception.ErrorCodes errCode;
+    private ErrorCodes errCode;
 
     public ClientException(String message) {
         super(message);

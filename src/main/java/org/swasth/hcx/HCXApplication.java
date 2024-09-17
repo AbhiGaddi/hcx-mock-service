@@ -8,6 +8,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
+@EnableAsync
 public class HCXApplication {
 	
 	public static void main(String[] args) {

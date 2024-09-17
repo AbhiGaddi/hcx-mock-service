@@ -69,6 +69,9 @@ public class PayerController extends BaseController {
                 map.put("status", resultSet.getString("status"));
                 map.put("additional_info", JSONUtils.deserialize(resultSet.getString("additional_info"), Map.class));
                 map.put("payload", JSONUtils.deserialize(resultSet.getString("request_fhir"), Map.class));
+                map.put("otp_verification", resultSet.getString("otp_verification"));
+                map.put("account_number", resultSet.getString("account_number"));
+                map.put("ifsc_code", resultSet.getString("ifsc_code"));
                 result.add(map);
             }
             resp.put(type, result);
@@ -162,6 +165,8 @@ public class PayerController extends BaseController {
                     if(!requestBody.containsKey("approved_amount") || !(requestBody.get("approved_amount") instanceof Integer))
                         throw new ClientException("Approved amount is mandatory field and should be a number");
                     info.put("approved_amount", requestBody.getOrDefault("approved_amount", 0));
+                    info.put("account_number", requestBody.getOrDefault("account_number", 0));
+                    info.put("ifsc_code", requestBody.getOrDefault("ifsc_code", ""));
                 }
                 String query = String.format("UPDATE %s SET additional_info = jsonb_set(additional_info::jsonb, '{%s}', '%s'),updated_on = %d WHERE request_id = '%s' RETURNING %s,%s,%s,%s,%s",
                         table, type, JSONUtils.serialize(info), System.currentTimeMillis(), id, "additional_info", "status", "raw_payload", "response_fhir", "action");
